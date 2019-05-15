@@ -41,3 +41,74 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+for ( let employee of employees) {
+  console.log(employeeBonus(employee));
+  
+}
+let newEmployees = [];
+function employeeBonus(employee){
+  console.log("in employeeBonus");
+
+  
+  let calculatedPercentage = calcBonus(employee);
+  let totalBonus = Math.floor(employee.annualSalary * (calculatedPercentage/100));
+  let totalCompensation = Number(employee.annualSalary) + totalBonus;
+
+  console.log(employee.name, "Bonus :", totalBonus);
+  
+  let newEmployee = {
+    name: employee.name,
+    bonusPercentage:calculatedPercentage,
+    totalBonus:totalBonus,
+    totalCompensation:totalCompensation
+  };
+    return newEmployee;
+    
+
+}
+function calcBonus(employee) {
+console.log("in calcBonus");
+
+
+let bonusPercentage = 0;
+
+if ( employee.reviewRating <= 2) {
+  bonusPercentage = 0;
+
+} else if ( employee.reviewRating === 3) {
+  bonusPercentage = 4;
+
+} else if (  employee.reviewRating === 4) {
+  bonusPercentage = 6; 
+}
+  else {
+    bonusPercentage = 10;
+}
+
+if ( employee.employeeNumber.toString().length === 4) {
+  bonusPercentage += 5;
+} 
+
+if ( employee.annualSalary > 65000) {
+  bonusPercentage -=1;
+}
+
+if ( bonusPercentage > 13) {
+  bonusPercentage = 13;
+}
+
+if ( bonusPercentage < 0 ) {
+  bonusPercentage = 0;
+}
+
+console.log(employee.name, bonusPercentage);
+
+return bonusPercentage;
+
+}
+
+console.log(employees)
+
+// $("h2").append()
+console.log(newEmployees);
